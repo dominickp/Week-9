@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="styles.css"/>
+    <script src="vendors.js"></script>
+    <script src="app.js"></script>
+  </head>
+  <body ng-app="serviceapp" class="container">
+    <h1>Hello Serviceapp</h1>
+    <div class="row">
+
+      <div class="well col-md-6" ng-controller="ControllerOne as c1">
+        <h2>ControllerOne</h2>
+        <input ng-model="c1.data.name" type="text"/>
+        <tt>name: {{ c1.data.name }}</tt>
+        <div>
+          <ul>
+            <li ng-repeat="(index, user) in c1.users">
+              {{ user.name }} <button ng-click="c1.removeUser(index)">remove</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="well col-md-6" ng-controller="ControllerTwo as c2">
+        <h2>ControllerTwo</h2>
+        <input ng-model="c2.data.name" type="text"/>
+        <tt>name: {{ c2.data.name }}</tt>
+        <div>
+          <ul>
+            <li ng-repeat="user in c2.users">
+              {{ user.name }} <button ng-click="c2.removeUser(index)">remove</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+  </body>
+</html>
