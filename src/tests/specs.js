@@ -1,5 +1,5 @@
 describe('ControllerOne', function(){
-  
+
 });
 describe('ControllerTwo', function(){
 
@@ -51,5 +51,27 @@ describe('userSvc', function(){
       userSvc.remove(0);
       expect(users.length).toBe(length - 1);
     });
+  });
+});
+
+describe('Users', function(){
+  var Users, $httpBackend;
+  beforeEach(module('serviceapp'));
+  beforeEach(function(){
+    inject(function($injector) {
+      $httpBackend = $injector.get('$httpBackend');
+      $httpBackend
+        .when('GET', 'http://jsonplaceholder.typicode.com/users')
+        .respond(200, [{name:"one"}, {name:"two"}]);
+      Users = $injector.get('Users');
+    });
+  });
+  describe('getUsers', function(){
+    it("should return some users", function(){
+      Users.getUsers(function(response){
+        expect(response.length).toBe(2);
+      });
+    });
+
   });
 });

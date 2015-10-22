@@ -1,9 +1,11 @@
 var app = angular.module('serviceapp', []);
 
-app.controller('ControllerOne', ['$scope', 'myName', 'users', 'userFact', function($scope, myName, users, userFact){
+app.controller('ControllerOne', ['$scope', 'myName', 'users', 'userFact', 'Users', function($scope, myName, users, userFact, Users){
   var c1 = this;
 
-  c1.users = users;
+  Users.getUsers(function(res){
+      c1.users = res;
+  });
   c1.data = myName;
   c1.removeUser = function(index){
     userFact.remove(index);
@@ -38,5 +40,13 @@ app.factory('userFact', ['users', function(users){
 app.service('userSvc', ['users', function(users){
   this.remove = function(index){
     users.splice(index, 1);
+  };
+}]);
+
+app.factory('Users', ['$http', function($http){
+  return {
+    getUsers: function(callback){
+      $http.get('http://jsonplaceholder.typicode.com/users').success(callback);
+    }
   };
 }]);
