@@ -69,7 +69,10 @@ describe('UsersHttp', function(){
   });
   describe('getUsers', function(){
     it("should return some users", function(){
-
+      var startingLength = usersHttp.users.length;
+      usersHttp.getUsers(function(){
+        expect(usersHttp.users.length).toBeGreaterThan(startingLength);        
+      });
     });
 
   });

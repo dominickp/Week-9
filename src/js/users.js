@@ -2,11 +2,14 @@ angular.module('serviceapp').service('UsersHttp', ['$http', function($http){
   var svc = this;
   svc.users = [];
 
-  svc.getUsers = function(){
+  svc.getUsers = function(callback){
     //$http.get('http://jsonplaceholder.typicode.com/users')
     $http.get('/users.json')
       .then(function(response){
         svc.users = response.data;
+        if(callback){
+          callback();
+        }
       });
   };
 
