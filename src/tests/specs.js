@@ -6,25 +6,69 @@ describe('ControllerOne', function(){
 describe('ControllerTwo', function(){
 
 });
-describe('userFact', function(){
-  describe('remove', function(){
-    xit("should remove one item from users", function(){
+describe('UserFact', function(){
 
+  describe('remove', function(){
+    var userFact, users;
+    beforeEach(module('serviceapp'));
+    beforeEach(function(){
+      // mock the users
+      module(function($provide){
+        $provide.value('Users', [
+          {name: "one"},
+          {name: "two"}
+        ]);
+      });
+      inject(function($injector) {
+        userFact = $injector.get('UserFact');
+        users = $injector.get('Users');
+      });
+    });
+    it("should remove one item from users", function(){
+      var length = users.length;
+      userFact.remove(0);
+      expect(users.length).toBe(length - 1);
     });
   });
 });
 
-describe('userSvc', function(){
-  describe('remove', function(){
-    xit("should remove an item from users", function(){
-
+describe('UserSvc', function(){
+  var userSvc, users;
+  beforeEach(module('serviceapp'));
+  beforeEach(function(){
+    // mock the users
+    module(function($provide){
+      $provide.value('Users', [
+        {name: "one"},
+        {name: "two"}
+      ]);
     });
+    inject(function($injector) {
+      userSvc = $injector.get('UserSvc');
+      users = $injector.get('Users');
+    });
+  });
+  it("should remove one item from users", function(){
+    var length = users.length;
+    userSvc.remove(0);
+    expect(users.length).toBe(length - 1);
   });
 });
 
-describe('Users', function(){
+describe('UsersHttp', function(){
+  var $httpBackend, usersHttp;
+  beforeEach(module('serviceapp'));
+  beforeEach(function(){
+    inject(function($injector){
+      $httpBackend = $injector.get('$httpBackend');
+      usersHttp = $injector.get('UsersHttp');
+    });
+    $httpBackend
+      .when('GET', '/users.json')
+      .respond(200, [{name:"one"}, {name:"two"}]);
+  });
   describe('getUsers', function(){
-    xit("should return some users", function(){
+    it("should return some users", function(){
 
     });
 
