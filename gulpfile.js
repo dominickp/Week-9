@@ -36,7 +36,7 @@ gulp.task('buildCSS', function(){
 });
 
 gulp.task('moveHTML', function(){
-  return gulp.src('src/**/*.html')
+  return gulp.src(['src/**/*.html', 'src/**/*.json'])
     .pipe(gulp.dest('dist'))
     .pipe(connect.reload());
 });

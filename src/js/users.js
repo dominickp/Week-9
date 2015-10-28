@@ -1,4 +1,4 @@
-angular.module('serviceapp').value('users', [
+angular.module('serviceapp').value('Users', [
     {
       "id": 1,
       "name": "Leanne Graham",
