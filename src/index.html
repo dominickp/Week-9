@@ -28,7 +28,7 @@
         </div>
         <div>
           <ul>
-            <li ng-repeat="user in c2.users">{{ user.name }}</li>
+            <li ng-repeat="user in c2.users">{{ user.name }} <button ng-click="c2.removeUser(index)">remove</button></li>
           </ul>
         </div>
       </div>

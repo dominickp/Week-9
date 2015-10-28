@@ -11,10 +11,14 @@ app.controller('ControllerOne', ['NameVal', 'Users', 'UserFact', function(NameVa
 
 }]);
 
-app.controller('ControllerTwo', ['NameVal', 'Users', 'UserFact', function(NameVal, Users, UserFact){
+app.controller('ControllerTwo', ['NameVal', 'Users', 'UserSvc', function(NameVal, Users, UserSvc){
   var c2 = this;
   c2.nameVal = NameVal;
   c2.users = Users;
+
+  c2.removeUser = function(index){
+    UserSvc.remove(index);
+  };
 
 
 }]);
@@ -27,5 +31,11 @@ app.factory('UserFact', ['Users', function(Users){
   };
   return {
     remove: remove
+  };
+}]);
+
+app.service('UserSvc', ['Users', function(Users){
+  this.remove = function(index){
+    Users.splice(index, 1);
   };
 }]);
