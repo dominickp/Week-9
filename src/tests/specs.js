@@ -6,71 +6,29 @@ describe('ControllerOne', function(){
 describe('ControllerTwo', function(){
 
 });
-describe('UserFact', function(){
+xdescribe('UserFact', function(){
 
   describe('remove', function(){
-    var userFact, users;
-    beforeEach(module('serviceapp'));
-    beforeEach(function(){
-      // mock the users
-      module(function($provide){
-        $provide.value('Users', [
-          {name: "one"},
-          {name: "two"}
-        ]);
-      });
-      inject(function($injector) {
-        userFact = $injector.get('UserFact');
-        users = $injector.get('Users');
-      });
-    });
     it("should remove one item from users", function(){
-      var length = users.length;
-      userFact.remove(0);
-      expect(users.length).toBe(length - 1);
+
     });
   });
 });
 
-describe('UserSvc', function(){
-  var userSvc, users;
-  beforeEach(module('serviceapp'));
-  beforeEach(function(){
-    // mock the users
-    module(function($provide){
-      $provide.value('Users', [
-        {name: "one"},
-        {name: "two"}
-      ]);
+xdescribe('UserSvc', function(){
+
+  describe('remove', function(){
+    it("should remove one item from users", function(){
+
     });
-    inject(function($injector) {
-      userSvc = $injector.get('UserSvc');
-      users = $injector.get('Users');
-    });
-  });
-  it("should remove one item from users", function(){
-    var length = users.length;
-    userSvc.remove(0);
-    expect(users.length).toBe(length - 1);
   });
 });
 
-describe('UsersHttp', function(){
-  var $httpBackend, usersHttp;
-  beforeEach(module('serviceapp'));
-  beforeEach(function(){
-    inject(function($injector){
-      $httpBackend = $injector.get('$httpBackend');
-      usersHttp = $injector.get('UsersHttp');
-    });
-    $httpBackend
-      .when('GET', '/users.json')
-      .respond(200, [{name:"one"}, {name:"two"}]);
-  });
+xdescribe('UsersHttp', function(){
+
   describe('getUsers', function(){
     it("should return some users", function(){
 
     });
-
   });
 });
