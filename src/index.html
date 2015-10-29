@@ -11,13 +11,27 @@
 
       <div class="well col-md-6" ng-controller="ControllerOne as c1">
         <h2>ControllerOne</h2>
+        <div>
+          <input ng-model="c1.name.name" type="text" /> {{ c1.name.name }}
+        </div>
+        <div>
+          <ul>
+            <li ng-repeat="(index, user) in c1.users">{{ user.name }} <button ng-click="c1.removeUser(index)">remove</button></li>
+          </ul>
+        </div>
+
       </div>
 
       <div class="well col-md-6" ng-controller="ControllerTwo as c2">
         <h2>ControllerTwo</h2>
+        <div>
+          <input ng-model="c2.name.name" type="text" /> {{ c2.name.name }}
         </div>
-      </div>
-
+        <div>
+          <ul>
+            <li ng-repeat="(index, user) in c2.users">{{ user.name }} <button ng-click="c2.removeUser(index)">remove</button></li>
+          </ul>
+        </div>
     </div>
 
   </body>

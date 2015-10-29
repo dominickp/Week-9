@@ -3,7 +3,7 @@ describe('ControllerOne', function(){
     expect(true).toBe(true);
   });
 });
-describe('ControllerTwo', function(){
+xdescribe('ControllerTwo', function(){
 
 });
 xdescribe('UserFact', function(){
